@@ -76,7 +76,6 @@ end
 action :configure do 
   extract_module 
 
-  puts  "in configure.. #{node[:newrelic_monitoring][:agents_install_dir]}/#{new_resource.name}/#{new_resource.config_dir}/newrelic_plugin.yml"
   template "#{node[:newrelic_monitoring][:agents_install_dir]}/#{new_resource.name}/#{new_resource.config_dir}/newrelic_plugin.yml" do 
     source "#{new_resource.name}.yml.erb"
     owner "root"

@@ -1,0 +1,28 @@
+
+newrelic:
+  #
+  # Update with your New Relic account license key:
+  #
+  license_key: <%= node[:newrelic_monitoring][:license_key] %>
+  #
+  # Set to '1' for verbose output, remove for normal output.
+  # All output goes to stdout/stderr.
+  #
+  verbose: 0
+
+#
+# Agent Configuration, describe your nginx instances here
+#
+agents:
+  nginx_status_agent:
+    -
+      instance_name: <%= node[:fqdn] %>
+      status_url: http://<%= node[:newrelic_monitoring][:nginx_agent][:host] %>:<%=node[:newrelic_monitoring][:nginx_agent][:port] %>/nginx_stub_status
+#      http_user: status
+#      http_pass: status_pass
+#    -
+#      instance_name: example.org
+#      status_url: http://example.org/status
+#    -
+#      instance_name: example.com
+#      status_url: http://example.com/status

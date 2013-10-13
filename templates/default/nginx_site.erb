@@ -1,0 +1,9 @@
+server {
+  listen <%= node[:newrelic_monitoring][:nginx_agent][:port] %> deferred;
+  server_name <%= node[:newrelic_monitoring][:nginx_agent][:host] %>;
+  location = /nginx_stub_status {
+    stub_status on;
+    allow  <%= node[:newrelic_monitoring][:nginx_agent][:host] %>;
+    deny all;
+  }
+}

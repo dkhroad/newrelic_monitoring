@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'daemons'
+require 'bundler/setup'
+
+
+def gem_bin_dir
+  `gem env`.match(%r{EXECUTABLE DIRECTORY:\s+(\S+)})[1]
+end
+
+options = {
+    dir_mode: :normal,
+    dir: "/var/run/newrelic",
+    backtrace: true
+}
+
+if ARGV[0] == "start" || ARGV[0] == "run" 
+   options.merge!(ARGV: [ARGV[0], '--', "run","-c","#{File.join(File.expand_path(File.dirname(__FILE__)),'newrelic_plugin.yml')}"])
+end
+
+Daemons.run(Pathname.new(gem_bin_dir).realpath + 'newrelic_resque_agent',options )

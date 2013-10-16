@@ -1,17 +1,4 @@
 
-def create_user 
-  group new_resource.group
-  user "#{new_resource.user}" do
-    action :create
-    name   new_resource.user
-    gid    new_resource.group
-    system true
-    shell  "/bin/bash"
-    comment "newrelic monitoring agent user"
-    home "/home/#{new_resource.user}"
-    supports manage_home: true
-  end
-end
 
 def source_is_a_tarball?
   new_resource.source =~ %r{.(tgz|gz)$}
@@ -69,7 +56,6 @@ def extract_module
 end
 
 action :install do 
-  create_user
   download 
 end
 

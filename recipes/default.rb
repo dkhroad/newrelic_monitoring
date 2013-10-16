@@ -24,6 +24,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 #
+include_recipe 'newrelic_monitoring::user'
 include_recipe 'newrelic_monitoring::nr_sysmond'
 include_recipe 'newrelic_monitoring::nginx_agent'
 include_recipe 'newrelic_monitoring::pivotal_agent'
